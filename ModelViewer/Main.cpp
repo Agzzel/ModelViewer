@@ -85,7 +85,7 @@ int main()
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
-	Model model("models/sword/scene.gltf");
+	Model model("C:/Users/Acke/Documents/GitHub/ModelViewer/models/sword/scene.gltf");
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
