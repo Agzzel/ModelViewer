@@ -25,8 +25,8 @@ public:
 	int width;
 	int height;
 	//Adjust camera speed and sensitivity when looking around
-	float speed = 0.01f;
-	float sensitivity = 30.0f;
+	float speed = 0.1f;
+	float sensitivity = 100.0f;
 
 	Camera(int width, int height, glm::vec3 position);
 

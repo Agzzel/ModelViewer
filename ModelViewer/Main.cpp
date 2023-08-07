@@ -100,7 +100,7 @@ int main()
 		camera.updateMatrix(45.0f, 0.1, 100.0f);
 
 		model.Draw(shaderProgram, camera);
-
+		
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
 		// Take care of all GLFW events

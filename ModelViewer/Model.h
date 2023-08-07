@@ -29,7 +29,7 @@ private:
 
 	std::vector<unsigned char> getData();
 	std::vector<float> getFloats(json accessor);
-	std::vector<GLuint> getIndicies(json accessor);
+	std::vector<GLuint> getIndices(json accessor);
 	std::vector<Texture> getTextures();
 
 	std::vector<Vertex> assembleVertices(
