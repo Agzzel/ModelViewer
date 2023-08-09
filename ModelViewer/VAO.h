@@ -1,3 +1,8 @@
+/*
+* Vertex Array Object, stores pointers to one or more VBOs and tells OpenGL how to interpret them.
+	VAOs exist in order to quickly be able to switch between different VBOs.
+*/
+
 #ifndef VAO_CLASS_H
 #define VAO_CLASS_H
 

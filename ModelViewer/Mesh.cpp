@@ -1,10 +1,10 @@
 #include "Mesh.h"
 
 Mesh::Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures) {
+	//a mesh consists of vertices, indices and textures, these are stored in their respective vectors
 	Mesh::vertices = vertices;
 	Mesh::indices = indices;
 	Mesh::textures = textures;
-
 	VAO.Bind();
 
 	// Generates Vertex Buffer Object and links it to vertices
@@ -35,7 +35,7 @@ void Mesh::Draw(Shader& shader, Camera& camera,
 
 	unsigned int numDiffuse = 0;
 	unsigned int numSpecular = 0;
-
+	//count the specular and diffuse textures and store them, to correctly load the texture
 	for (unsigned int i = 0; i < textures.size(); i++) {
 		std::string num;
 		std::string type = textures[i].type;
@@ -52,9 +52,9 @@ void Mesh::Draw(Shader& shader, Camera& camera,
 	glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 	camera.Matrix(shader, "camMatrix");
 
-	glm::mat4 trans = glm::mat4(1.0f);
-	glm::mat4 rot = glm::mat4(1.0f);
-	glm::mat4 sca = glm::mat4(1.0f);
+	glm::mat4 trans = glm::mat4(1.0f);//translation
+	glm::mat4 rot = glm::mat4(1.0f);//rotation
+	glm::mat4 sca = glm::mat4(1.0f);//scale
 
 	trans = glm::translate(trans, translation);
 	rot = glm::mat4_cast(rotation);

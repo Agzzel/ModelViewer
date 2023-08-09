@@ -1,8 +1,10 @@
 #include"Model.h"
 
+//reads the model file from a char*.
+//since the gltf file format uses the json file structure the model file has to be parsed
+//to a json file.
 Model::Model(const char* file)
 {
-	// Make a JSON object
 	std::string text = get_file_contents(file);
 	JSON = json::parse(text);
 
@@ -49,7 +51,18 @@ void Model::loadMesh(unsigned int indMesh)
 }
 
 void Model::traverseNode(unsigned int nextNode, glm::mat4 matrix)
-{
+{/*
+ A json file contains dictionaries which in turn contain arrays of other dictionaries.
+ This can be represented as a tree, with branches whose indices can point to other branches.
+ All the information for the matrices and relationships between meshes is in the nodes of the tree.
+
+ If multiple meshes are loaded they might all appear inside each other at the origin,
+ To prevent this, we need to know where to place the meshes and how big they should be.
+ This is achieved by extracting the matrix transformations from the gltf files. 
+ The program has to keep track of what children each mesh has in order to multiply the matrices
+ of each mesh together, that's where this function comes in.
+ */
+
 	// Current node
 	json node = JSON["nodes"][nextNode];
 
@@ -194,7 +207,7 @@ std::vector<GLuint> Model::getIndices(json accessor)
 
 	// Get indices with regards to their type: unsigned int, unsigned short, or short
 	unsigned int beginningOfData = byteOffset + accByteOffset;
-	if (componentType == 5125)
+	if (componentType == 5125) //unsigned int
 	{
 		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 4; i)
 		{
@@ -204,7 +217,7 @@ std::vector<GLuint> Model::getIndices(json accessor)
 			indices.push_back((GLuint)value);
 		}
 	}
-	else if (componentType == 5123)
+	else if (componentType == 5123)//unsigned short
 	{
 		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i)
 		{
@@ -214,7 +227,7 @@ std::vector<GLuint> Model::getIndices(json accessor)
 			indices.push_back((GLuint)value);
 		}
 	}
-	else if (componentType == 5122)
+	else if (componentType == 5122)//short
 	{
 		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i)
 		{

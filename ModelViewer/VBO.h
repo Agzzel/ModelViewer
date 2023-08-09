@@ -1,3 +1,8 @@
+/*
+* Buffer used for sending vertex data to the GPU,
+* buffers are OpenGL objects that store an array of unformatted memory allocated by the GPU.
+*/
+
 #ifndef VBO_CLASS_H
 #define VBO_CLASS_H
 
