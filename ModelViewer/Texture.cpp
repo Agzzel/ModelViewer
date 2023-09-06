@@ -5,7 +5,6 @@ Texture::Texture(const char* image, const char* texType, GLuint slot)
 	//Assigns the type of the texture to the texture object
 	type = texType;
 
-	//Stores the width, height and number of colour channels of the image
 	int widthImg, heightImg, numColCh;
 	//by default stb loads images from the top-left to lower-right corner,
 	//which displays images upside-down when using OpenGL. This function flips the image.
@@ -24,7 +23,7 @@ Texture::Texture(const char* image, const char* texType, GLuint slot)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	//Settings for how the repeats itself
+	//Settings for how the texture repeats itself
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 

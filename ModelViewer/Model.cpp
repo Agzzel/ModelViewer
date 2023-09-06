@@ -117,7 +117,6 @@ void Model::traverseNode(unsigned int nextNode, glm::mat4 matrix)
 	rot = glm::mat4_cast(rotation);
 	sca = glm::scale(sca, scale);
 
-	// Multiply all matrices together
 	glm::mat4 matNextNode = matrix * matNode * trans * rot * sca;
 
 	// Check if the node contains a mesh and if it does load it

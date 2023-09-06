@@ -27,7 +27,7 @@ void Camera::Matrix(Shader& shader, const char* uniform)
 }
 
 void Camera::Inputs(GLFWwindow* window)
-{//switch?
+{
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
 		Position += speed * Orientation;

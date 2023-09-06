@@ -17,7 +17,6 @@ std::string get_file_contents(const char* filename)
 	throw(errno);
 }
 
-// Constructor that build the Shader Program from 2 different shaders
 Shader::Shader(const char* vertexFile, const char* fragmentFile)
 {
 	// Read vertexFile and fragmentFile and store the strings
@@ -32,7 +31,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	// Attach Vertex Shader source to the Vertex Shader Object
 	glShaderSource(vertexShader, 1, &vertexSource, NULL);
-	// Compile the Vertex Shader into machine code
+	// Compile the Vertex Shader
 	glCompileShader(vertexShader);
 	// Checks if Shader compiled succesfully
 	compileErrors(vertexShader, "VERTEX");
@@ -41,7 +40,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	// Attach Fragment Shader source to the Fragment Shader Object
 	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-	// Compile the Vertex Shader into machine code
+	// Compile the Vertex Shader
 	glCompileShader(fragmentShader);
 	// Checks if Shader compiled succesfully
 	compileErrors(fragmentShader, "FRAGMENT");
@@ -51,7 +50,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 	// Attach the Vertex and Fragment Shaders to the Shader Program
 	glAttachShader(ID, vertexShader);
 	glAttachShader(ID, fragmentShader);
-	// Wrap-up/Link all the shaders together into the Shader Program
+	//Link all the shaders together into the Shader Program
 	glLinkProgram(ID);
 	// Checks if Shaders linked succesfully
 	compileErrors(ID, "PROGRAM");
@@ -62,13 +61,11 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 
 }
 
-// Activates the Shader Program
 void Shader::Activate()
 {
 	glUseProgram(ID);
 }
 
-// Deletes the Shader Program
 void Shader::Delete()
 {
 	glDeleteProgram(ID);
